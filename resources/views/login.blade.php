@@ -40,18 +40,21 @@
                                     </div>
                                     <h4 class="text-center mb-4 text-white">Sign in your account</h4>
 
-                                    <form action="index.html">
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
                                         <div class="form-group mb-3">
                                             <label class="mb-1 text-white"><strong>Email</strong></label>
                                             <input type="email"
-                                                class="form-control bg-transparent text-white border-white" autofocus>
+                                                class="form-control bg-transparent text-white border-white"
+                                                name="email" autofocus>
                                         </div>
 
                                         <div class="form-group mb-3">
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
                                             <div class="input-group">
                                                 <input type="password" id="password"
-                                                    class="form-control bg-transparent text-white border-white">
+                                                    class="form-control bg-transparent text-white border-white"
+                                                    name="password">
                                                 <div class="input-group-append" onclick="seePassword()">
                                                     <span class="input-group-text">
                                                         <i id="toggleIcon" class="fas fa-eye"></i>
