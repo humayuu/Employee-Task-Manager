@@ -19,13 +19,16 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('user.profile.update', Auth::user()->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="fullname" class="form-label">Full Name</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="fullname" name="name" placeholder="Enter full name" autofocus>
+                                        id="fullname" name="name" placeholder="Enter full name" autofocus
+                                        value="{{ Auth::user()->name }}">
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -34,7 +37,8 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">Email Address</label>
                                     <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                        id="email" name="email" placeholder="email@example.com">
+                                        id="email" name="email" placeholder="email@example.com"
+                                        value="{{ Auth::user()->email }}">
                                     @error('email')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -44,6 +48,8 @@
                                     <label for="image" class="form-label">Profile Image</label>
                                     <input class="form-control @error('image') is-invalid @enderror" type="file"
                                         id="image" name="image">
+                                    <img src="{{ Auth::user()->profile_photo_path == null ? asset('default_avatar.png') : Storage::url(Auth::user()->profile_photo_path) }}"
+                                        alt="Image" width="200" class="mt-2">
                                     @error('image')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

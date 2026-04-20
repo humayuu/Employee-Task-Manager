@@ -18,7 +18,10 @@ Route::controller(AuthController::class)->group(function () {
 
         Route::controller(UserController::class)->group(function () {
             Route::get('user/status/{id}', 'userStatus')->name('user.status');
+            Route::get('user/change/password', 'userChangePassword')->name('user.change.password');
             Route::get('user/profile/{id}', 'userProfile')->name('user.profile');
+            Route::put('user/profile/update/{id}', 'userProfileUpdate')->name('user.profile.update');
+            Route::put('user/password/update/{id}', 'userPasswordUpdate')->name('user.password.store');
         });
     });
 });

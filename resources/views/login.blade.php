@@ -29,8 +29,14 @@
                 <div class="col-12 col-lg-8 mx-auto">
                     <div class="card radius-15 overflow-hidden">
                         <div class="row g-0">
+
                             <div class="col-xl-12">
                                 <div class="card-body p-5">
+                                    @if (session('error'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
                                     <div class="text-center">
                                         <h3 class="mt-4 fw-bold fs-1">Task Manager</h3>
                                         <h3 class="mt-4 font-weight-bold">Welcome Back</h3>
@@ -47,7 +53,8 @@
                                                     <label for="inputEmailAddress" class="form-label">Email
                                                         Address</label>
                                                     <input type="email" class="form-control" name="email"
-                                                        id="inputEmailAddress" placeholder="Email Address" autofocus>
+                                                        id="inputEmailAddress" placeholder="Email Address" autofocus
+                                                        value="{{ old('email') }}">
                                                     @error('email')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror

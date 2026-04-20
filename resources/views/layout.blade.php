@@ -222,14 +222,14 @@
                                         <p class="user-name mb-0">{{ Auth::user()->name }}</p>
                                         <p class="designattion mb-0">Available</p>
                                     </div>
-                                    <img src="{{ asset('assets/images/avatars/avatar-1.png') }}" class="user-img"
+                                    <img src="{{ Storage::url(Auth::user()->profile_photo_path) }}" class="user-img"
                                         alt="user avatar">
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="{{ route('user.profile', Auth::user()->id) }}"><i
                                         class="bx bx-user"></i><span>Profile</span></a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('user.change.password') }}">
                                     <i class="bx bxs-lock-alt"></i> <span>Change Password</span>
                                 </a>
 
