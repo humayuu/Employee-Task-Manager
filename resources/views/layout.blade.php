@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dark-sidebar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/dark-theme.css') }}" />
 
+
 </head>
 
 <body>

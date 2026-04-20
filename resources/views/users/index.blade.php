@@ -57,9 +57,10 @@
                                                 <td>
                                                     <div class="d-flex align-items-center gap-2">
                                                         <a href="{{ route('user.status', $user->id) }}"
-                                                            class="btn btn-sm btn-info d-flex align-items-center justify-content-center"
+                                                            class="btn btn-dark  d-flex align-items-center justify-content-center"
                                                             style="width:38px;height:38px;border-radius:8px">
-                                                            <i class="bx bx-refresh fs-5"></i>
+                                                            <i
+                                                                class="bx bx-toggle-{{ $user->status == 'active' ? 'right' : 'left' }} fs-3 text-{{ $user->status == 'active' ? 'success' : 'secondary' }}"></i>
                                                         </a>
 
                                                         <a href="{{ route('user.edit', $user->id) }}"
