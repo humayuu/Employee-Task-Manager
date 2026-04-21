@@ -59,7 +59,21 @@
                     <a href="{{ route('user.index') }}">
                         <div class="parent-icon icon-color-3"><i class="bx bx-user"></i>
                         </div>
-                        <div class="menu-title">Users</div>
+                        <div class="menu-title">Manage Users</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('task.create') }}">
+                        <div class="parent-icon icon-color-5"><i class="bx bx-plus"></i>
+                        </div>
+                        <div class="menu-title">Create Task</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('task.index') }}">
+                        <div class="parent-icon icon-color-7"><i class="bx bx-task"></i>
+                        </div>
+                        <div class="menu-title">All Task</div>
                     </a>
                 </li>
             </ul>

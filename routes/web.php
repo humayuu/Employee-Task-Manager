@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\CheckUserMiddleware;
@@ -15,6 +16,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::middleware(AuthMiddleware::class)->group(function () {
         Route::get('/dashboard', 'Dashboard')->name('dashboard');
         Route::resource('user', UserController::class);
+        Route::resource('task', TaskController::class);
 
         Route::controller(UserController::class)->group(function () {
             Route::get('user/status/{id}', 'userStatus')->name('user.status');
