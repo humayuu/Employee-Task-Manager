@@ -56,6 +56,13 @@
                                             @if ($user->role == 'manager' || $user->role == 'employee')
                                                 <td>
                                                     <div class="d-flex align-items-center gap-2">
+                                                        <a href="{{ route('user.show', $user->id) }}"
+                                                            class="btn btn-sm btn-primary d-flex align-items-center justify-content-center"
+                                                            style="width:38px; height:38px; border-radius:8px;"
+                                                            aria-label="View User">
+                                                            <i class="bx bx-user fs-5"></i>
+                                                        </a>
+
                                                         <a href="{{ route('user.status', $user->id) }}"
                                                             class="btn btn-dark  d-flex align-items-center justify-content-center"
                                                             style="width:38px;height:38px;border-radius:8px">
