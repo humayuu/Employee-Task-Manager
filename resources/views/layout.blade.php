@@ -47,50 +47,92 @@
                 </a>
             </div>
             <!--navigation-->
-            <ul class="metismenu" id="menu">
-                <li>
-                    <a href="{{ route('dashboard') }}">
-                        <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
-                        </div>
-                        <div class="menu-title">Dashboard</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('user.index') }}">
-                        <div class="parent-icon icon-color-3"><i class="bx bx-user"></i>
-                        </div>
-                        <div class="menu-title">Manage Users</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('task.create') }}">
-                        <div class="parent-icon icon-color-5"><i class="bx bx-plus"></i>
-                        </div>
-                        <div class="menu-title">Create Task</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('task.index') }}">
-                        <div class="parent-icon icon-color-7"><i class="bx bx-task"></i>
-                        </div>
-                        <div class="menu-title">All Task</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('user.logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <div class="parent-icon icon-color-13">
-                            <i class="bx bx-log-out"></i>
-                        </div>
-                        <div class="menu-title">Logout</div>
-                    </a>
+            @if (Auth::user()->role == 'admin')
+                <ul class="metismenu" id="menu">
+                    <li>
+                        <a href="{{ route('dashboard') }}">
+                            <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
+                            </div>
+                            <div class="menu-title">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.index') }}">
+                            <div class="parent-icon icon-color-3"><i class="bx bx-user"></i>
+                            </div>
+                            <div class="menu-title">Manage Users</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('task.create') }}">
+                            <div class="parent-icon icon-color-5"><i class="bx bx-plus"></i>
+                            </div>
+                            <div class="menu-title">Create Task</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('task.index') }}">
+                            <div class="parent-icon icon-color-7"><i class="bx bx-task"></i>
+                            </div>
+                            <div class="menu-title">All Task</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <div class="parent-icon icon-color-13">
+                                <i class="bx bx-log-out"></i>
+                            </div>
+                            <div class="menu-title">Logout</div>
+                        </a>
 
-                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
+                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
 
-            </ul>
+                </ul>
+            @else
+                <ul class="metismenu" id="menu">
+                    <li>
+                        <a href="{{ route('dashboard') }}">
+                            <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
+                            </div>
+                            <div class="menu-title">Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.task', Auth::id()) }}">
+                            <div class="parent-icon icon-color-3"><i class="bx bx-task"></i>
+                            </div>
+                            <div class="menu-title">My Task Users</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.profile', Auth::id()) }}">
+                            <div class="parent-icon icon-color-5"><i class="bx bx-user"></i>
+                            </div>
+                            <div class="menu-title">Profile</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <div class="parent-icon icon-color-13">
+                                <i class="bx bx-log-out"></i>
+                            </div>
+                            <div class="menu-title">Logout</div>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+
+                </ul>
+            @endif
             <!--end navigation-->
         </div>
         <!--end sidebar-wrapper-->

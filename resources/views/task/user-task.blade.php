@@ -17,27 +17,14 @@
                 <div class="card radius-15">
                     <div class="card-body">
                         <div class="card-title">
-                            <h4 class="mb-0">Task <span class="fs-3 fw-bold">{{ $tasks->total() }}</span></h4>
+                            {{-- <h4 class="mb-0">Task <span class="fs-3 fw-bold">{{ $tasks->total() }}</span></h4> --}}
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ route('task.create') }}" class="btn btn-primary d-flex align-items-center gap-2">
-                                <i class="bx bx-plus fs-5"></i> Create Task
-                            </a>
-                        </div>
-                        <hr />
-                        <div class="btn-group mb-3" role="group" aria-label="Task Filters">
-                            <a href="{{ route('filter.all.task') }}" class="btn">All Task</a>
-                            <a href="{{ route('filter.pending.task') }}" class="btn">All Pending Task</a>
-                            <a href="{{ route('filter.overdue.task') }}" class="btn">All Overdue Task</a>
-                            <a href="{{ route('filter.complete.task') }}" class="btn">All Complete Task</a>
-                        </div>
-
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th scope="col">Title</th>
-                                        <th scope="col">Assign To</th>
+                                        <th scope="col">Description</th>
                                         <th scope="col">Due Date</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
@@ -47,35 +34,16 @@
                                     @forelse ($tasks as $task)
                                         <tr>
                                             <td>{{ ucfirst($task->title) }}</td>
-                                            <td>{{ $task->user->name }}</td>
+                                            <td>{{ $task->user->description }}</td>
                                             <td>{{ $task->due_date }}</td>
                                             <td>{{ ucfirst($task->status) }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <a href="{{ route('task.show', $task->id) }}"
-                                                        class="btn btn-sm btn-info d-flex align-items-center justify-content-center"
-                                                        style="width:38px; height:38px; border-radius:8px;"
-                                                        aria-label="View User">
-                                                        <i class="bx bx-task fs-5"></i>
-                                                    </a>
-
-                                                    <a href="{{ route('task.edit', $task->id) }}"
+                                                    <a href="#"
                                                         class="btn btn-sm btn-primary d-flex align-items-center justify-content-center"
                                                         style="width:38px;height:38px;border-radius:8px">
                                                         <i class="bx bx-edit fs-5"></i>
                                                     </a>
-
-                                                    <form method="POST" action="{{ route('task.destroy', $task->id) }}"
-                                                        class="m-0">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
-                                                            style="width:38px;height:38px;border-radius:8px"
-                                                            onclick="return confirm('Are you sure you want to delete this user?')">
-                                                            <i class="bx bx-trash fs-5"></i>
-                                                        </button>
-                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -91,7 +59,7 @@
                         </div>
 
                         <div class="mt-3">
-                            {{ $tasks->links() }}
+                            {{-- {{ $tasks->links() }} --}}
                         </div>
                     </div>
                 </div>

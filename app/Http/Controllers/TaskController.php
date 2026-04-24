@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
@@ -102,5 +102,42 @@ class TaskController extends Controller
 
             return redirect()->back()->with('error', 'Error in delete task');
         }
+    }
+
+    /**
+     * For Filter Task
+     */
+    public function filterAllTask()
+    {
+        $tasks = Task::with(['user'])->paginate(10);
+        return view('task.index', compact('tasks'));
+    }
+
+    public function filterPendingTask()
+    {
+        $tasks = Task::where('status', 'pending')->with(['user'])->paginate(10);
+        return view('task.index', compact('tasks'));
+    }
+    public function filterOverdueTask()
+    {
+        $tasks = Task::where('status', 'overdue')->with(['user'])->paginate(10);
+        return view('task.index', compact('tasks'));
+    }
+
+    public function filterCompleteTask()
+    {
+        $tasks = Task::where('status', 'complete')->with(['user'])->paginate(10);
+        return view('task.index', compact('tasks'));
+    }
+
+
+    /**
+     * For specific user task
+     */
+    public function userTask($id)
+    {
+        $tasks = Task::where('user_id', $id)->get();
+
+        return view('task.user-task', compact('tasks'));
     }
 }

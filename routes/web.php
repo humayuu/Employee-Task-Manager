@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\CheckStatusMiddleware;
 use App\Http\Middleware\CheckUserMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('user/logout', 'userLogout')->name('user.logout');
 
     Route::middleware(AuthMiddleware::class)->group(function () {
-        Route::get('/dashboard', 'Dashboard')->name('dashboard');
+        Route::get('/dashboard', 'Dashboard')->name('dashboard')->middleware(CheckStatusMiddleware::class);
         Route::resource('user', UserController::class);
         Route::resource('task', TaskController::class);
+        Route::get('user/task/{id}', [TaskController::class, 'userTask'])->name('user.task');
+        Route::get('task/filter/all', [TaskController::class, 'filterAllTask'])->name('filter.all.task');
+        Route::get('task/filter/pending', [TaskController::class, 'filterPendingTask'])->name('filter.pending.task');
+        Route::get('task/filter/overdue', [TaskController::class, 'filterOverdueTask'])->name('filter.overdue.task');
+        Route::get('task/filter/complete', [TaskController::class, 'filterCompleteTask'])->name('filter.complete.task');
 
         Route::controller(UserController::class)->group(function () {
             Route::get('user/status/{id}', 'userStatus')->name('user.status');
