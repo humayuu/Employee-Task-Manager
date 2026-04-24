@@ -76,6 +76,20 @@
                         <div class="menu-title">All Task</div>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('user.logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <div class="parent-icon icon-color-13">
+                            <i class="bx bx-log-out"></i>
+                        </div>
+                        <div class="menu-title">Logout</div>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+
             </ul>
             <!--end navigation-->
         </div>
