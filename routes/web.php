@@ -19,6 +19,8 @@ Route::controller(AuthController::class)->group(function () {
         Route::resource('user', UserController::class);
         Route::resource('task', TaskController::class);
         Route::get('user/task/{id}', [TaskController::class, 'userTask'])->name('user.task');
+        Route::get('user/task/edit/{id}', [TaskController::class, 'userEditTask'])->name('user.edit.task');
+        Route::put('user/task/update/{id}', [TaskController::class, 'userTaskUpdate'])->name('user.task.update');
         Route::get('task/filter/all', [TaskController::class, 'filterAllTask'])->name('filter.all.task');
         Route::get('task/filter/pending', [TaskController::class, 'filterPendingTask'])->name('filter.pending.task');
         Route::get('task/filter/overdue', [TaskController::class, 'filterOverdueTask'])->name('filter.overdue.task');

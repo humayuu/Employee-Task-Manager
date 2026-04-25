@@ -52,12 +52,20 @@ class AuthController extends Controller
      */
     public function userLogin(UserAuthRequest $request)
     {
-
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password]) && Auth::user()->status == 'active') {
+        if (Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+            'status' => 'active'
+        ])) {
             return redirect()->route('dashboard');
-        } else {
-            return redirect()->back()->with('error', 'Wrong email or Password')->withInput();
         }
+
+        $user = User::where('email', $request->email)->first();
+        if ($user && $user->status == 'inactive') {
+            return redirect()->back()->with('error', 'You are inactive')->withInput();
+        }
+
+        return redirect()->back()->with('error', 'Wrong email or Password')->withInput();
     }
 
 

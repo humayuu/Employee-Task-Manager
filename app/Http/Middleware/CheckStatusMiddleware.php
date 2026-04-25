@@ -18,6 +18,7 @@ class CheckStatusMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         Task::where('due_date', '<', now())
+            ->where('status', '!=', 'complete')
             ->update(['status' => 'overdue']);
 
 

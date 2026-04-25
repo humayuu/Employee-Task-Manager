@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Request;
 use Throwable;
 
 class TaskController extends Controller
@@ -139,5 +140,28 @@ class TaskController extends Controller
         $tasks = Task::where('user_id', $id)->get();
 
         return view('task.user-task', compact('tasks'));
+    }
+
+    /**
+     * For User edit task
+     */
+    public function userEditTask($id)
+    {
+        $task = Task::findOrFail($id);
+        if (Auth::id() !== $task->user_id) {
+            abort('403');
+        }
+        return view('task.user_task_edit', compact('task'));
+    }
+
+    /**
+     * For User Task Update
+     */
+    public function userTaskUpdate(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+        $task->update(['status' => $request->status]);
+
+        return redirect()->back()->with('success', 'Status Updated Successfully');
     }
 }

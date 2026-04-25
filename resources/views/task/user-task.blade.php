@@ -34,12 +34,12 @@
                                     @forelse ($tasks as $task)
                                         <tr>
                                             <td>{{ ucfirst($task->title) }}</td>
-                                            <td>{{ $task->user->description }}</td>
+                                            <td>{{ $task->description }}</td>
                                             <td>{{ $task->due_date }}</td>
                                             <td>{{ ucfirst($task->status) }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <a href="#"
+                                                    <a href="{{ route('user.edit.task', $task->id) }}"
                                                         class="btn btn-sm btn-primary d-flex align-items-center justify-content-center"
                                                         style="width:38px;height:38px;border-radius:8px">
                                                         <i class="bx bx-edit fs-5"></i>
